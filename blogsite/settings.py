@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = ['localhost', '16.16.147.116']
+ALLOWED_HOSTS = ['16.16.147.116','localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'blogsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoblog',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST': "Localhost",
-        'PORT': "",
+        'PORT': "5432",
     }
 }
 
