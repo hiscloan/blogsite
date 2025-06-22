@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <article class="mb-4">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" class="img-fluid mb-3">
+        {% endif %}  
+
+        <h2>{{ post.title }}</h2>
+
+        <p class="text-muted">{{ post.published|date:"F j, Y" }}</p>
+        <div>{{ post.content }}</div>
+    </article>
+    <a class="btn btn-primary btn-sm" href="{% url 'blog-home' %}">Back to home</a>
+
+    <hr>
+
+    <h4>Comments</h4>
+    {% for comment in comments %}
+      <div class="mb-3">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+                <strong>{{ comment.author }}</strong> on {{ comment.date_posted|date:"F j, Y H:i" }}
+
+            </h6>       
+            <p class="card-text">{{ comment.body }}
+            {% if comment.author == user %}
+                    <a href="{% url 'comment-edit' comment.pk %}" class="">Edit</a>
+            {% endif %}
+            </p>
+        </div>
+      </div>
+    {% empty %}
+      <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+
+    <h4>Leave a Comment</h4>
+    {% if user.is_authenticated %}
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+      </form>
+    {% else %}
+      <p><a href="{% url 'login' %}">Login</a> to leave a comment.</p>
+    {% endif %}
+
+
+
+
+{% endblock %}

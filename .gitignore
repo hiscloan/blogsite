@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+env/
+venv/
+*.sqlite3
+
+# Django static and media files
+/media/
+/staticfiles/
+
+# VSCode settings (optional)
+.vscode/
+
+# Secret keys, environment configs
+*.env

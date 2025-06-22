@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+  <div class="row g-4 align-items-center">
+    <div class="col-md-4 text-center">
+        <img src="{% static 'blog/avatar.jpg' %}" alt="My portrait" class="img-fluid rounded-circle border" style="max-width: 200px;">
+    </div>
+    <div class="col-md-8">
+        <h2 class="mb-3">Hey there, I’m Thorin.</h2>
+        <p>Welcome to my blog! I’m the guy behind the posts, the code, and possibly the coffee addiction ☕. I post cool things I've done here, share insights from my journey, and occasionally drop a groan worthy pun.</p>
+        <p>When I’m not writing or building things in Django, you’ll probably find me tinkering with ideas, sketching system architectures, or possibly playing a video game.</p>
+        <h5 class="mt-4">Find me online</h5>
+        <div class="mt-3 d-flex gap-2">
+            <a href="https://github.com/hiscloan" target="_blank" class="btn btn-outline-dark me-2">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/thorin-pickard-19b692289/" target="_blank" class="btn btn-outline-primary">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </div>
+        <a href="{% url 'blog-home' %}" class="btn btn-outline-primary mt-3">To the Blog!</a>
+  </div>
+</div>
+
+{% endblock %}
