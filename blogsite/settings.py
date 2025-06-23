@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = ['16.16.147.116','localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['16.16.147.116','localhost', '127.0.0.1', 'thorincodes.co.za', 'www.thorincodes.co.za']
 
 
 # Application definition
