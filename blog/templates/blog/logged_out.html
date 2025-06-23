@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="logout-container">
+    <h2>You've been logged out</h2>
+    <p>Thanks for visiting ThorinCodes. See you again soon!</p>
+    <a class="btn btn-glow mt-3" href="{% url 'login' %}">Log in again</a>
+  </div>
+{% endblock %}
