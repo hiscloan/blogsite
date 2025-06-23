@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import UpdateView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, TemplateView, UpdateView
 from .models import Post, Comment
-from .forms import CommentForm
-from django.shortcuts import redirect
+from .forms import CommentForm, UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
+from django.contrib.auth import logout
 
 
 class PostListView(ListView):
@@ -57,3 +57,19 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class AboutView(TemplateView):
     template_name = 'blog/about.html'
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been created! You can now log in.')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'blog/register.html', {'form': form})
+
+def custom_logout(request):
+    logout(request)
+    return redirect('login')

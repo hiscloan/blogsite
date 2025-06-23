@@ -38,11 +38,16 @@
 
     <h4>Leave a Comment</h4>
     {% if user.is_authenticated %}
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Post Comment</button>
-      </form>
+      <div class="comment-box">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          <div class="mb-3">
+            {{ form.body }}
+          </div>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+      </div>
     {% else %}
       <p><a href="{% url 'login' %}">Login</a> to leave a comment.</p>
     {% endif %}
