@@ -3,16 +3,24 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <article class="mb-4">
-        {% if post.image %}
-            <img src="{{ post.image.url }}" class="img-fluid mb-3">
-        {% endif %}  
+<div>
+  <h2 class="section-heading mb-1">{{ post.title }}</h2>
+</div>
 
-        <h2>{{ post.title }}</h2>
+<div class="post-header d-flex align-items-start mb-3">
 
-        <p class="text-muted">{{ post.published|date:"F j, Y" }}</p>
-        <div>{{ post.content }}</div>
-    </article>
+
+      {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-thumbnail me-3">
+      {% endif %}
+
+
+    </div>
+
+    <div class="post-content">
+      {{ post.content|linebreaksbr|urlize }}
+    </div>
+
     <a class="btn btn-primary btn-sm" href="{% url 'blog-home' %}">Back to home</a>
 
     <hr>
